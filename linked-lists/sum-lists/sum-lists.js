@@ -46,4 +46,28 @@ const iteratively_sumLists = (list1, list2) => {
   return sum;
 };
 
-module.exports = iteratively_sumLists;
+// time:  O(n)
+// space: O(1)
+const sumLists = (list1, list2) => {
+  let total = 0;
+  let factor = 1;
+
+  let a = list1.head;
+  let b = list2.head;
+
+  while (a !== null || b !== null) {
+    const numA = !!a ? a.value : 0; // set fallback value in case list is done
+    const numB = !!b ? b.value : 0;
+    const sum = numA + numB;
+    total += (sum * factor)
+
+    // set up next iteration
+    factor *= 10;
+    a = !!a ? a.next : a;
+    b = !!b ? b.next : b;
+  }
+
+  return total;
+};
+
+module.exports = sumLists;
