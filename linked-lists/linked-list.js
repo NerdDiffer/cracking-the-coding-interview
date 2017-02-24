@@ -4,6 +4,7 @@ module.exports = LinkedList;
 
 function LinkedList() {
   this.head = null;
+  this.tail = null;
 }
 
 LinkedList.prototype.append = function(value) {
@@ -11,14 +12,10 @@ LinkedList.prototype.append = function(value) {
 
   if (this.head === null) {
     this.head = node;
+    this.tail = node;
   } else {
-    let curr = this.head;
-
-    while (curr.next !== null) {
-      curr = curr.next;
-    }
-
-    curr.next = node;
+    this.tail.next = node;
+    this.tail = node;
   }
 };
 
