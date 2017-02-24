@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2"
+  },
+  "ava": {
+    "verbose": true,
+    "tap": false
+  }
+}
