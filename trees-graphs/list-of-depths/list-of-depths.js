@@ -36,5 +36,9 @@ const makeListsAtDepths = tree => {
     i += 1;
   }
 
+  lists.push(list);
+
   return lists;
 };
+
+module.exports = makeListsAtDepths;
