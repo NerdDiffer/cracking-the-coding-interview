@@ -4,14 +4,12 @@
  */
 const { BinaryTree, El } = require('../binary-tree.js');
 
-const getMidInd = (lo, hi) => lo + Math.floor((hi - lo) / 2);
-
 const insertValAtNode = (arr, lo, hi) => {
   // if mid point not available, then return immediately
-  if (lo > hi) { return; }
+  if (lo > hi) { return null; }
 
   // get index of median value between two sides.
-  const mid = getMidInd(lo, hi);
+  const mid = lo + Math.floor((hi - lo) / 2);
 
   // insert median into tree
   const node = new El(arr[mid]);
@@ -20,20 +18,6 @@ const insertValAtNode = (arr, lo, hi) => {
   // go right, set lo adjacent to median & recurse
   node.right = insertValAtNode(arr, mid + 1, hi);
   return node;
-};
-
-const binarySearch = (arr, t, lo, hi) => {
-  if (lo > hi) { return null; } // unsuccessful search
-
-  const mid = Math.floor((lo + hi) / 2);
-
-  if (array[mid] < t) {
-    return binarySearch(arr, t, mid + 1, hi);
-  } else if (array[mid] > t) {
-    return binarySearch(arr, t, lo, mid - 1);
-  } else {
-    return mid;
-  }
 };
 
 const minimizeHeight = arr => {
