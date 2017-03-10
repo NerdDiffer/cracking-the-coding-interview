@@ -31,3 +31,25 @@ test('#minimizeHeight: works with simple tree with consecutive values', t => {
   const expected = tree;
   t.deepEqual(actual, expected);
 });
+
+test('#minimizeHeight: works w/ array of unevenly distributed values & even length', t => {
+  // - the array's median value (root of tree) is not the array's mean value
+  // - cannot be a 'perfect binary tree' because of node count & tree depth
+
+  const tree = new BinaryTree();
+  tree.root = new El(10);
+
+  // 1st level
+  tree.root.left = new El(4);
+  tree.root.right = new El(17);
+
+  // 2nd level
+  tree.root.left.right = new El(6);
+  tree.root.right.left = new El(14);
+  tree.root.right.right = new El(100);
+
+  const input = [4,6,10,14,17,100];
+  const actual = minimizeHeight(input);
+  const expected = tree;
+  t.deepEqual(actual, expected);
+});
