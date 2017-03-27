@@ -8,7 +8,7 @@
 
 const countSumPaths = (tree, targetSum) => {
   const sumsToCounts = {};
-  return traverse(tree.root, 0)
+  return traverse(tree.root, 0);
 
   function traverse(node, prevSum) {
     if (!node) { return 0; }
@@ -19,17 +19,23 @@ const countSumPaths = (tree, targetSum) => {
     let total = sumsToCounts.hasOwnProperty(diff) ? sumsToCounts[diff] : 0;
     if (currSum === targetSum) { total += 1; }
 
-    // add to map
-    if (!sumsToCounts.hasOwnProperty(currSum)) { sumsToCounts[currSum] = 0; }
-    sumsToCounts[currSum] += 1;
+    incMap(sumsToCounts, currSum);
 
     total += traverse(node.left, currSum);
     total += traverse(node.right, currSum);
 
-    // remove from map
-    sumsToCounts[currSum] -= 1;
+    decMap(sumsToCounts, currSum);
 
     return total;
+  }
+
+  function incMap(map, key) {
+    if (!map.hasOwnProperty(key)) { map[key] = 0; }
+    map[key] += 1;
+  }
+
+  function decMap(map, key) {
+    map[key] -= 1;
   }
 };
 
